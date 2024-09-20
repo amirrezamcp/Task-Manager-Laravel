@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Tasks\TaskController as tasks;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.tasks');
-});
+Route::get('/', [tasks::class, 'index']);
 
 
 Route::group(['prefix' => 'admin'], function () {
