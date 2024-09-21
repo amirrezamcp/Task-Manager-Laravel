@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Tasks\TaskController as tasks;
+use App\Http\Controllers\Tasks\TaskController as Tasks;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [tasks::class, 'index']);
-
+Route::get('/', [Tasks::class, 'index'])->name('tasks_show');
+Route::post('/', [Tasks::class, 'store'])->name('tasks_add');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

@@ -3,31 +3,28 @@
 namespace App\Http\Controllers\Tasks;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TasksRequest;
 use App\Models\Tasks;
+use Illuminate\Console\View\Components\Task;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $tasks = Tasks::all();
         return view('pages.tasks', compact('tasks'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(TasksRequest $request)
     {
-        //
+        $user_id = 1;
+
+        Tasks::query()->create([
+            'title' => $request->title,
+            'user_id' => $user_id,
+        ]);
+        return redirect()->back()->with('success', 'تسک اضافه شد');
     }
 
     /**
