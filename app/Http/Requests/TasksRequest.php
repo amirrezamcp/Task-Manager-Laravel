@@ -24,7 +24,7 @@ class TasksRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required', 'max:256'],
+            'title' => ['required', 'max:128'],
         ];
     }
 
@@ -32,7 +32,7 @@ class TasksRequest extends FormRequest
     {
         return [
             'title.required' => 'عنوان تسک الزامی است',
-            'title.max' => 'عنوان تسک نباید بیشتر از 256 کاراکتر باشد.',
+            'title.max' => 'عنوان تسک نباید بیشتر از 128 کاراکتر باشد.',
         ];
     }
 }
