@@ -25,6 +25,11 @@
                 <li class="task-item">
                     {{ $task->title }}
                     <div class="button-container">
+                        <form action="{{ route('tasks_show_update', $task->id) }}" method="GET" style="display:inline;">
+                            <button type="submit" class="update-button">
+                                <img src="{{ asset('assets/image/pencil.png') }}" alt="ویرایش">
+                            </button>
+                        </form>
                         <form action="{{ route('tasks_delete', $task->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')

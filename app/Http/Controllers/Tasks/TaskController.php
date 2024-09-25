@@ -27,37 +27,27 @@ class TaskController extends Controller
         return redirect()->back()->with('success', 'تسک اضافه شد');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function show($task_id)
     {
-
+        $task = Tasks::find($task_id);
+        return view('pages.tasks_update', compact('task'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(TasksRequest $request, $task)
     {
-        //
+        $validate_data = $request->validated();
+        $task = Tasks::findOrFail($task);
+        $task->update([
+            'title' => $validate_data['title']
+        ]);
+    
+        return redirect()->route('tasks_show')->with('success', 'تسک با موفقیت ویرایش شد.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy(Tasks $task_id)
     {
-        //
+        $task_id->delete();
+        return redirect()->route('tasks_show')->with('success', 'تسک با موفقیت حذف شد.');
     }
+
 }
