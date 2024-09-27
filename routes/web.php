@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\auth\LoginController;
+use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\Tasks\TaskController as Tasks;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +22,11 @@ Route::prefix('/')->group(function () {
     Route::get('{task_id}', [Tasks::class, 'show'])->name('tasks_show_update');
     Route::put('{task_id}', [Tasks::class, 'update'])->name('tasks_update');
 });
+
+Route::get('/auth/login', [LoginController::class,'login'])->name('login_show');
+Route::get('/auth/register', [RegisterController::class,'register'])->name('register_show');
+Route::post('/auth/register', [RegisterController::class,'store'])->name('register_add');
+
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
