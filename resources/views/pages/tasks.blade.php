@@ -10,6 +10,8 @@
                 </span>
             </div>  
         @endif
+
+        @if (count($tasks) > 0)
         <form action="{{ route('tasks_add') }}" method="POST" id="taskForm">
             @csrf
             <div class="add-task">
@@ -41,5 +43,8 @@
                 </li>
             @endforeach
         </ul>
+        @else
+            <p class="no-task-message">تسکی وجود ندارد</p>
+        @endif
     </div>
 @endsection
