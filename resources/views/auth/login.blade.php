@@ -1,23 +1,18 @@
-<!DOCTYPE html>
-<html lang="fa">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ورود به حساب کاربری</title>
-    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
-</head>
-<body>
+@extends('index')
+
+@section('content')
     <div class="container">
         <h2>ورود به حساب کاربری</h2>
-        <form onsubmit="return login(event)">
-            <input type="text" id="username" placeholder="نام کاربری" required>
-            <input type="password" id="password" placeholder="گذرواژه" required>
-            <button type="submit">ورود</button>
+        <form action="#" method="POST">
+            @csrf
+            <div class="login-task-maneger">
+                <input type="text" id="username" name="username" placeholder="نام کاربری" required>
+                <input type="password" id="password" name="password" placeholder="گذرواژه" required>
+                <button type="submit">ورود</button>
+            </div>
         </form>
-        <div class="logout" id="logout" style="display: none;">
-            <button onclick="logout()">خروج</button>
+        <div class="login-redirect">
+            <p> حساب کاربری نداری؟ <a href="#"> ساخت حساب </a></p>
         </div>
     </div>
-    <script src="{{ asset('assets/js/app.js') }}"></script>
-</body>
-</html>
+@endsection
