@@ -1,38 +1,48 @@
+:root {
+    --primary-color: #35424a;
+    --secondary-color: #e8491d;
+    --success-color: #28a745;
+    --background-color: #f4f4f4;
+    --text-color: #333;
+    --white: #ffffff;
+    --border-radius: 5px;
+}
+
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(to right, #f4f4f4, #e2e2e2);
+    background: linear-gradient(to right, var(--background-color), #e2e2e2);
 }
 
-header {
-    background: #35424a;
-    color: #ffffff;
-    padding: 20px;
+header, footer {
+    background: var(--primary-color);
+    color: var(--white);
     text-align: center;
+    padding: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 nav {
     width: 250px;
     float: left;
-    background: #35424a;
+    background: var(--primary-color);
     height: 100%;
     padding: 15px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
 nav a {
-    color: #ffffff;
+    color: var(--white);
     text-decoration: none;
     display: block;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: var(--border-radius);
     transition: background 0.3s;
 }
 
 nav a:hover {
-    background: #e8491d;
+    background: var(--secondary-color);
 }
 
 .content {
@@ -40,10 +50,14 @@ nav a:hover {
     padding: 20px;
     max-width: 600px;
 }
+h1 {
+    text-align: center;
+    color: #5b7789;
+}
 
 h2 {
     text-align: center;
-    color: #333;
+    color: var(--text-color);
 }
 
 .success-message {
@@ -71,22 +85,22 @@ h2 {
     flex: 1;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: var(--border-radius);
     margin-right: 10px;
     transition: border 0.3s;
 }
 
 .add-task input:focus {
-    border: 1px solid #e8491d;
+    border: 1px solid var(--secondary-color);
     outline: none;
 }
 
 .add-task button {
     padding: 10px 15px;
-    background-color: #28a745;
-    color: white;
+    background-color: var(--success-color);
+    color: var(--white);
     border: none;
-    border-radius: 5px;
+    border-radius: var(--border-radius);
     cursor: pointer;
     transition: background-color 0.3s;
 }
@@ -101,48 +115,135 @@ h2 {
 }
 
 .task-item {
-    background-color: #ffffff;
+    background-color: var(--white);
     margin: 10px 0;
     padding: 15px;
-    border-radius: 5px;
+    border-radius: var(--border-radius);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .task-item:hover {
     transform: translateY(-2px);
 }
 
-footer {
-    background: #35424a;
-    color: #ffffff;
-    text-align: center;
-    padding: 10px 0;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.task-item {
+.button-container {
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 
-.delete-button {
+.delete-button, .update-button {
     background-color: transparent;
     border: none;
     cursor: pointer;
     margin-left: 10px;
 }
 
-.delete-button img {
+.delete-button img, .update-button img {
     width: 20px;
     height: 20px;
     transition: transform 0.3s;
 }
+.login-task-maneger button, .register-task-maneger button{
+    width: 100%;
+    padding: 10px;
+    background-color: var(--success-color);
+    color: var(--white);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
 
-.delete-button:hover img {
-    transform: scale(2);
+.delete-button:hover img, .update-button:hover img {
+    transform: scale(1.5);
+}
+
+.container {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    background: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 90%;
+    padding: 15px;
+    margin: 10px 5px;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
+    transition: border 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border: 1px solid var(--secondary-color);
+    outline: none;
+}
+
+.btn {
+    background-color: var(--success-color);
+    color: var(--white);
+    padding: 10px 15px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    width: 100%;
+}
+
+.btn:hover {
+    background-color: #218838;
+}
+
+.message {
+    margin-top: 15px;
+    text-align: center;
+    color: green;
+}
+
+.logout {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.login-redirect {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.login-redirect a {
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+.login-redirect a:hover {
+    text-decoration: underline;
+}
+
+.no-task-message {
+    padding: 15px; /* فاصله داخلی */
+    margin-top: 20px; /* فاصله بالای پیام */
+    border-radius: 4px; /* گوشه‌های گرد */
+    color: #d9534f; /* رنگ متن خطا */
+    background-color: #f2dede; /* رنگ پس‌زمینه خطا */
+    border: 1px solid #ebccd1; /* حاشیه خطا */
+    text-align: center; /* مرکز کردن متن */
+    font-size: 16px; /* اندازه فونت */
 }
