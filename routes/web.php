@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\auth\RegisterController;
+use App\Http\Controllers\pages\HomeController;
 use App\Http\Controllers\Tasks\TaskController as Tasks;
 use Illuminate\Support\Facades\Route;
+use TCG\Voyager\Models\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,17 +17,26 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::prefix('/')->group(function () {
-    Route::get('', [Tasks::class, 'index'])->name('tasks_show');
-    Route::post('', [Tasks::class, 'store'])->name('tasks_add');
-    Route::delete('{task_id}', [Tasks::class, 'destroy'])->name('tasks_delete');
-    Route::get('{task_id}', [Tasks::class, 'show'])->name('tasks_show_update');
-    Route::put('{task_id}', [Tasks::class, 'update'])->name('tasks_update');
+
+Route::get('/', HomeController::class)->name('Home_page');
+
+Route::prefix('tasks')->group(function () {
+    Route::get('/', [Tasks::class, 'index'])->name('tasks_show')->middleware('people_login');
+    Route::post('/', [Tasks::class, 'store'])->name('tasks_add');
+    Route::delete('/{task_id}', [Tasks::class, 'destroy'])->name('tasks_delete');
+    Route::get('/{task_id}', [Tasks::class, 'show'])->name('tasks_show_update');
+    Route::put('/{task_id}', [Tasks::class, 'update'])->name('tasks_update');
 });
 
-Route::get('/auth/login', [LoginController::class,'login'])->name('login_show');
-Route::get('/auth/register', [RegisterController::class,'register'])->name('register_show');
-Route::post('/auth/register', [RegisterController::class,'store'])->name('register_add');
+Route::prefix('auth')->group(function() {
+    Route::get('/logout', [LoginController::class,'logout'])->name('logout');
+
+    Route::get('/login', [LoginController::class,'login'])->name('login_show');
+    Route::post('/login', [LoginController::class,'store'])->name('login_user');
+
+    Route::get('/register', [RegisterController::class,'register'])->name('register_show');
+    Route::post('/register', [RegisterController::class,'store'])->name('register_add');
+});
 
 
 Route::group(['prefix' => 'admin'], function () {
