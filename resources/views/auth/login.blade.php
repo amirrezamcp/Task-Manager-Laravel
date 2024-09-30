@@ -3,16 +3,22 @@
 @section('content')
     <div class="container">
         <h2>ورود به حساب کاربری</h2>
-        <form action="#" method="POST">
+        <form action=" {{ route('login_user') }} " method="POST">
             @csrf
             <div class="login-task-maneger">
-                <input type="text" id="username" name="username" placeholder="نام کاربری" required>
-                <input type="password" id="password" name="password" placeholder="گذرواژه" required>
+                <input type="text" id="username" name="username" placeholder="نام کاربری">
+                    @error('username')
+                    <span style="color: red"> {{ $message }} </span>
+                    @enderror
+                <input type="password" id="password" name="password" placeholder="گذرواژه">
+                    @error('password')
+                    <span style="color: red"> {{ $message }} </span>
+                    @enderror
                 <button type="submit">ورود</button>
             </div>
         </form>
         <div class="login-redirect">
-            <p> حساب کاربری نداری؟ <a href="#"> ساخت حساب </a></p>
+            <p> حساب کاربری نداری؟ <a href=" {{ route('register_show') }} "> ساخت حساب </a></p>
         </div>
     </div>
 @endsection
