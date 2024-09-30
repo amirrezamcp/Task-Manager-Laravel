@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Validation\ValidationException;
+use App\Http\Requests\LoginRequest;
+use App\Models\People;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -23,20 +27,21 @@ class LoginController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LoginRequest $request)
     {
-        //
+        $people = People::query()->where('username', $request->username)->firstOrFail();
+        if(Hash::check($request->password, $people->password)) {
+            auth()->guard('peoples')->login($people);
+        }else{
+            throw ValidationException::withMessages(['password' => 'رمزعبور اشتباه است']);
+        }
+        return redirect()->route('tasks_show');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function logout()
     {
-        //
+        auth()->guard('peoples')->logout();
+        return redirect()->back();
     }
 
     /**

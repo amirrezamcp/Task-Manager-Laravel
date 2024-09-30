@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PeopleRequest;
+use App\Http\Requests\RegisterRequest;
 use App\Models\People;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -16,7 +16,7 @@ class RegisterController extends Controller
         return view('auth.register');
     }
 
-    public function store(PeopleRequest $request)
+    public function store(RegisterRequest $request)
     {
         $user = People::query()->create([
             'username' => $request->username,
@@ -24,7 +24,9 @@ class RegisterController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return redirect()->route('login_show');
+        auth()->guard('peoples')->login($user);
+
+        return redirect()->route('login_show' );
     }
 
     /**
