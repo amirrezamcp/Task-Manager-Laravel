@@ -5,22 +5,21 @@ namespace App\Http\Controllers\Tasks;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TasksRequest;
 use App\Models\Tasks;
-use Illuminate\Console\View\Components\Task;
-use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
     public function index()
     {
-        $tasks = Tasks::all();
+        $user_id = auth()->guard('peoples')->id();
+        $tasks = Tasks::where('user_id', $user_id)->get();
         return view('pages.tasks', compact('tasks'));
     }
-
+    
     public function store(TasksRequest $request)
     {
-        $user_id = 1;
+        $user_id = auth()->guard('peoples')->id();
 
-        Tasks::query()->create([
+        Tasks::create([
             'title' => $request->title,
             'user_id' => $user_id,
         ]);

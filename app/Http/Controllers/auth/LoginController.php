@@ -5,28 +5,20 @@ namespace App\Http\Controllers\auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\ValidationException;
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\TasksRequest;
 use App\Models\People;
+use App\Models\Tasks;
+use Illuminate\Console\View\Components\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function login()
     {
         return view('auth.login');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(LoginRequest $request)
     {
         $people = People::query()->where('username', $request->username)->firstOrFail();

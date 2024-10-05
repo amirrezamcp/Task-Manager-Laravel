@@ -10,17 +10,16 @@
                 </span>
             </div>  
         @endif
-
-        @if (count($tasks) > 0)
         <form action="{{ route('tasks_add') }}" method="POST" id="taskForm">
             @csrf
             <div class="add-task">
                 <input type="text" name="title" id="taskInput" placeholder="عنوان تسک جدید" required>
                 <button type="submit">اضافه کردن</button>
                 @error('title')
-                    <span style="color: red"> {{ $message }} </span>
+                <span style="color: red"> {{ $message }} </span>
                 @enderror
             </div>
+            @if (count($tasks) > 0)
         </form>
         <ul class="task-list" id="taskList">
             @foreach ($tasks as $task)
