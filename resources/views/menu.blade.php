@@ -4,4 +4,5 @@
     <a href="#">تنظیمات</a>
     <a href=" {{ route('login_show') }} ">ورود</a>
     <a href="{{ route('register_show') }}">ثبت نام</a>
+    <a href="{{ route('logout') }}">خروج</a>
 </nav>
