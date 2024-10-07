@@ -16,7 +16,7 @@
                 <input type="text" name="title" id="taskInput" placeholder="عنوان تسک جدید" required>
                 <button type="submit">اضافه کردن</button>
                 @error('title')
-                <span style="color: red"> {{ $message }} </span>
+                    <span class="text-danger">{{ $message }}</span>
                 @enderror
             </div>
             @if (count($tasks) > 0)
