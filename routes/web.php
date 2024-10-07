@@ -3,6 +3,7 @@
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\pages\HomeController;
+use App\Http\Controllers\pages\UserController as User;
 use App\Http\Controllers\Tasks\TaskController as Tasks;
 use Illuminate\Support\Facades\Route;
 use TCG\Voyager\Models\Role;
@@ -19,6 +20,9 @@ use TCG\Voyager\Models\Role;
 */
 
 Route::get('/', HomeController::class)->name('Home_page');
+
+Route::get('/settings', [User::class, 'settings'])->name('settings_show');
+Route::put('/settings/{setting_id}', [User::class, 'update'])->name('settings_update');
 
 Route::prefix('tasks')->group(function () {
     Route::get('/', [Tasks::class, 'index'])->name('tasks_show')->middleware('people_login');
