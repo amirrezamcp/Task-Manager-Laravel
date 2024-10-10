@@ -21,8 +21,11 @@ use TCG\Voyager\Models\Role;
 
 Route::get('/', HomeController::class)->name('Home_page');
 
-Route::get('/settings', [User::class, 'settings'])->name('settings_show');
-Route::put('/settings/{setting_id}', [User::class, 'update'])->name('settings_update');
+Route::prefix('settings')->group(function () {
+    Route::get('/', [User::class, 'settings'])->name('settings_show');
+    
+    Route::put('/{setting_id}', [User::class, 'update'])->name('settings_update');
+});
 
 Route::prefix('tasks')->group(function () {
     Route::get('/', [Tasks::class, 'index'])->name('tasks_show')->middleware('people_login');
