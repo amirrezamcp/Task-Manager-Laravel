@@ -17,15 +17,15 @@
         @method('PUT')
         <div class="form-group">
             <label for="username">نام کاربری</label>
-            <input type="text" class="form-control" id="username" name="username" value="{{ $user->username }}">
-            @error('title')
+            <input type="text" class="form-control" id="username" name="username" placeholder="نام کاربری فعلی : {{ $user->username }}">
+            @error('username')
                 <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
         
         <div class="form-group">
             <label for="email">ایمیل</label>
-            <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}">
+            <input type="email" class="form-control" id="email" name="email" placeholder="ایمیل فعلی : {{ $user->email }}">
             @error('email')
                 <div class="text-danger">{{ $message }}</div>
             @enderror
@@ -33,9 +33,9 @@
 
         <div class="form-group">
             <label for="current_password">پسورد فعلی</label>
-            <input type="password" class="form-control" id="current_password" name="current_password">
+            <input type="password" class="form-control" id="current_password" name="current_password" placeholder="پسورد فعلی : ***** ">
             @error('current_password')
-            <div class="text-danger">{{ $message }}</div>
+                <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
 
