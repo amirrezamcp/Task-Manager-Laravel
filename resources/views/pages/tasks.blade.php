@@ -28,14 +28,14 @@
                     <div class="button-container">
                         <form action="{{ route('tasks_show_update', $task->id) }}" method="GET" style="display:inline;">
                             <button type="submit" class="update-button">
-                                <img src="{{ asset('assets/image/pencil.png') }}" alt="ویرایش">
+                                <img src="{{ asset('image/pencil.png') }}" alt="ویرایش">
                             </button>
                         </form>
                         <form action="{{ route('tasks_delete', $task->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="delete-button" onclick="return confirm('آیا مطمئن هستید که می‌خواهید این تسک را حذف کنید؟')">
-                                <img src="{{ asset('assets/image/trash-can.png') }}" alt="حذف">
+                                <img src="{{ asset('image/trash-can.png') }}" alt="حذف">
                             </button>
                         </form>
                     </div>
