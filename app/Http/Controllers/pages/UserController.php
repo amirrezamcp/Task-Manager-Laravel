@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Models\People;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -23,7 +24,7 @@ class UserController extends Controller
         $user->update([
             'username' => $validate_data['username'],
             'email' => $validate_data['email'],
-            'password' => $validate_data['new_password'],
+            'password' => Hash::make($validate_data['new_password']),
         ]);
     
         return redirect()->route('settings_show')->with('success', 'تنظیمات با موفقیت به‌روزرسانی شد.');

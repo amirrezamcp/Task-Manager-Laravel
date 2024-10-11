@@ -27,7 +27,7 @@ class UserRequest extends FormRequest
             'username' => 'required',
             'email' => 'required', 'email',
             'current_password' => 'required',
-            'new_password' => 'required', 'min:8',
+            'new_password' => 'required', 'min:2',
             'password_confirmation' => 'same:new_password',
         ];
     }
