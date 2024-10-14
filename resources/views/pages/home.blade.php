@@ -15,9 +15,11 @@
             <input type="hidden" id="pendingTasks" value="{{ $pendingTasks }}">
         </div>
 
+        @if (!auth()->guard('peoples')->check())
         <div class="login-redirect">
             <p>حساب کاربری نداری؟ <a href="{{ route('register_show') }}">ساخت حساب</a></p>
             <p>قبلاً حساب دارید؟ <a href="{{ route('login_show') }}">ورود به حساب</a></p>
         </div>
+        @endif
     </div>
 @endsection
