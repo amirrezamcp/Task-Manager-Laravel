@@ -29,10 +29,15 @@ Route::prefix('settings')->group(function () {
 
 Route::prefix('tasks')->group(function () {
     Route::get('/', [Tasks::class, 'index'])->name('tasks_show')->middleware('people_login');
+
     Route::post('/', [Tasks::class, 'store'])->name('tasks_add')->middleware('people_login');
+
     Route::delete('/{task_id}', [Tasks::class, 'destroy'])->name('tasks_delete')->middleware('people_login');
+
     Route::get('/{task_id}', [Tasks::class, 'show'])->name('tasks_show_update')->middleware('people_login');
     Route::put('/{task_id}', [Tasks::class, 'update'])->name('tasks_update')->middleware('people_login');
+
+    Route::put('/{task_id}/done', [Tasks::class, 'done'])->name('tasks_done')->middleware('people_login');
 });
 
 Route::prefix('auth')->group(function() {
