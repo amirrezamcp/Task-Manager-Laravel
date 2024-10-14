@@ -42,6 +42,21 @@ class TaskController extends Controller
     
         return redirect()->route('tasks_show')->with('success', 'تسک با موفقیت ویرایش شد.');
     }
+    
+    public function done($task)
+    {
+        $task = Tasks::findOrFail($task);
+        $task->is_done = !$task->is_done;
+        $task->save();
+    
+        if($task->is_done) {
+            return redirect()->route('tasks_show')->with('success', 'تسک انجام شد');
+        }else{
+            return redirect()->route('tasks_show')->with('success', 'تسک در حال انجام است');
+        }
+    }
+    
+    
 
     public function destroy(Tasks $task_id)
     {
