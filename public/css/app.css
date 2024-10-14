@@ -141,14 +141,14 @@ h2 {
     align-items: center;
 }
 
-.delete-button, .update-button {
+.delete-button, .update-button, .tick-button {
     background-color: transparent;
     border: none;
     cursor: pointer;
     margin-left: 10px;
 }
 
-.delete-button img, .update-button img {
+.delete-button img, .update-button img, .tick-button img {
     width: 24px;
     height: 24px;
     transition: transform 0.3s;
@@ -165,7 +165,7 @@ h2 {
     transition: background-color 0.3s;
 }
 
-.delete-button:hover img, .update-button:hover img {
+.delete-button:hover img, .update-button:hover img, .tick-button:hover img{
     transform: scale(1.5);
 }
 
@@ -253,4 +253,10 @@ input[type="password"]:focus {
     border: 1px solid #ebccd1; 
     text-align: center; 
     font-size: 16px; 
+}
+
+.completed {
+    text-decoration: line-through;
+    color: gray;
+    opacity: 0.5;
 }
