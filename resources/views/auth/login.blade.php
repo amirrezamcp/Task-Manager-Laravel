@@ -19,6 +19,7 @@
         </form>
         <div class="login-redirect">
             <p> حساب کاربری نداری؟ <a href=" {{ route('register_show') }} "> ساخت حساب </a></p>
+            <p> رمز عبور خود را فراموش کرده اید ؟<a href=" {{ route('forgot_password_show') }} "> فراموشی رمز عبور </a></p>
         </div>
     </div>
 @endsection
