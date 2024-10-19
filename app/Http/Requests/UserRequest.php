@@ -25,10 +25,10 @@ class UserRequest extends FormRequest
     {
         return [
             'username' => 'required',
-            'email' => 'required', 'email',
+            'email' => 'required|email',
             'current_password' => 'required',
-            'new_password' => 'required', 'min:2',
-            'password_confirmation' => 'same:new_password',
+            'new_password' => 'required|min:2',
+            'password_confirmation' => 'required|same:new_password',
         ];
     }
 
@@ -39,7 +39,8 @@ class UserRequest extends FormRequest
             'email.required' => 'ایمیل الزامی است',
             'email.email' => 'ایمیل نامعتبر است',
             'current_password.required' => 'رمز عبور فعلی الزامی است',
-            'new_password.required' => 'رمز عبور الزامی است',
+            'new_password.required' => 'رمز عبور جدید الزامی است',
+            'password_confirmation.required' => 'تکرار رمز عبور جدید الزامی است',
             'new_password.min' => 'رمز عبور باید حداقل ۸ رقم باشد',
             'password_confirmation.same' => 'تکرار رمز عبور با رمز عبور مطابقت ندار',
         ];

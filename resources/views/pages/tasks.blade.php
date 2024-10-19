@@ -13,7 +13,7 @@
         <form action="{{ route('tasks_add') }}" method="POST" id="taskForm">
             @csrf
             <div class="add-task">
-                <input type="text" name="title" id="taskInput" placeholder="عنوان تسک جدید" required>
+                <input type="text" name="title" id="taskInput" placeholder="عنوان تسک جدید">
                 <button type="submit">اضافه کردن</button>
                 @error('title')
                     <span class="text-danger">{{ $message }}</span>
