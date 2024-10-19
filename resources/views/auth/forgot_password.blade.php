@@ -2,8 +2,15 @@
 
 @section('content')
 <div class="container">
+    @if (Session::has('success'))
+        <div class="success-message">
+            <span>
+                {!! Session::get('success') !!}
+            </span>
+        </div>  
+    @endif
     <h1>فراموشی رمز عبور</h1>
-    <form action="{{ route('reset_password_show') }}" method="POST">
+    <form action="{{ route('forgot_password') }}" method="POST">
         @csrf
         <div class="form-group">
             <label for="email">ایمیل:</label>

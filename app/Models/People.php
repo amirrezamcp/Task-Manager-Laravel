@@ -14,5 +14,7 @@ class People extends Authenticatable
         'username',
         'email',
         'password',
+        'remember_token',
+        'reset_token',
     ];
 }
