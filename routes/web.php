@@ -3,6 +3,7 @@
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\auth\ForgotPasswordController as ForgotPassword;
+use App\Http\Controllers\auth\ResetPasswordController as ResetPassword;
 use App\Http\Controllers\pages\HomeController;
 use App\Http\Controllers\pages\UserController as User;
 use App\Http\Controllers\Tasks\TaskController as Tasks;
@@ -50,8 +51,11 @@ Route::prefix('auth')->group(function() {
     Route::get('/register', [RegisterController::class,'register'])->name('register_show');
     Route::post('/register', [RegisterController::class,'store'])->name('register_add');
     
-    Route::get('/forgot_password', [ForgotPassword::class, 'forgot_password'])->name('forgot_password_show');
+    Route::get('/forgot_password', [ForgotPassword::class, 'forgotPassword'])->name('forgot_password_show');
     Route::post('/forgot_password', [ForgotPassword::class, 'sendResetLink'])->name('forgot_password');
+
+    Route::get('/reset_password/{link}', [ResetPassword::class, 'resetPassword'])->name('reset_password_show');
+    Route::post('/reset_password', [ResetPassword::class, 'updatePassword'])->name('update_Password');
 });
 
 
